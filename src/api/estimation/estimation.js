@@ -1,19 +1,11 @@
 const restful = require('node-restful')
 const mongoose = restful.mongoose
 
-const taskSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  value: { type: Number, min: 0, required: true },
-})
-
 const workItemSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  task: [taskSchema],
-  status: { 
-    type: String, 
-    required: false, 
-    uppercase: true, 
-    enum: ['PENDENTE', 'CONCLUÍDO']}
+  name: { type: String, required: [true, 'Informe o nome do item'] },
+  value: { type: Number, min: 0, required: true},
+  status: { type: String, required: false, uppercase: true,
+    enum: ['PENDENTE', 'CONCLUÍDO'] }
 })
 
 const estimationSchema = new mongoose.Schema({
